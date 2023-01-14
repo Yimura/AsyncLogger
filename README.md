@@ -12,7 +12,8 @@ main.cpp
 #include <filesystem>
 #include <iostream>
 
-using namespace base;
+// expose LOG, LOGF, eLogLevel::DEBUG, eLogLevel::INFO, etc...
+using namespace al;
 
 void COUT_LOG(LogMessagePtr msg)
 {
