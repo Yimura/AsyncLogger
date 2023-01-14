@@ -1,5 +1,7 @@
 # AsyncLogger
 
+Modern Asyncronous Logger using C++20 and std::format (falls back on fmt::format if not available).
+
 ## How to use
 
 Very simple example application showing how to implement it.
