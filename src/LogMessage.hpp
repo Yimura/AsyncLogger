@@ -3,7 +3,7 @@
 #include <string>
 #include "LogLevel.hpp"
 
-namespace base
+namespace al
 {
     class LogMessage
     {

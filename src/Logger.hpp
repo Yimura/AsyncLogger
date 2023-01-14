@@ -17,7 +17,7 @@
 #include "LogLevel.hpp"
 #include "LogMessage.hpp"
 
-namespace base
+namespace al
 {
     using LogMessagePtr = std::shared_ptr<LogMessage>;
     using LogSink = std::function<void(LogMessagePtr)>;

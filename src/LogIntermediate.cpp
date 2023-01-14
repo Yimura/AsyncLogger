@@ -1,6 +1,6 @@
 #include "LogIntermediate.hpp"
 
-namespace base
+namespace al
 {
     LogIntermediate::LogIntermediate(const std::string_view formatString, const std::source_location location) :
         m_FormatString(formatString),

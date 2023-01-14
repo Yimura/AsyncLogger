@@ -1,7 +1,7 @@
 #include "LogCapture.hpp"
 #include "Logger.hpp"
 
-namespace base
+namespace al
 {
     LogCapture::LogCapture(const eLogLevel level, std::source_location&& location) :
         m_Level(level),

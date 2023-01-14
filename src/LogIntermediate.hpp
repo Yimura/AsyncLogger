@@ -2,7 +2,7 @@
 #include <source_location>
 #include <string_view>
 
-namespace base
+namespace al
 {
     class LogIntermediate
     {

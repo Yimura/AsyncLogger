@@ -1,7 +1,7 @@
 #include "LogMessage.hpp"
 #include "LogLevel.hpp"
 
-namespace base
+namespace al
 {
     LogMessage::LogMessage(const eLogLevel level, std::source_location&& location, std::string&& message) :
         m_Level(level),

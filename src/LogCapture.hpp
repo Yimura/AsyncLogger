@@ -3,7 +3,7 @@
 #include <sstream>
 #include "LogLevel.hpp"
 
-namespace base
+namespace al
 {
     class Logger;
     class LogCapture

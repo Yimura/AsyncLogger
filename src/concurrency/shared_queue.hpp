@@ -8,7 +8,7 @@
  * from Kjellkod/concurrent on Github
  * 
  */
-namespace base
+namespace al
 {
     template<typename T>
     class shared_queue

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace base
+namespace al
 {
     enum eLogLevel
     {

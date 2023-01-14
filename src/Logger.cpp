@@ -2,7 +2,7 @@
 #include "LogCapture.hpp"
 #include "LogMessage.hpp"
 
-namespace base
+namespace al
 {
     LogCapture LOG(const eLogLevel level, std::source_location location)
     {
