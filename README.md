@@ -1,6 +1,7 @@
 # AsyncLogger
 
-Modern Asyncronous Logger using C++20 and std::format (falls back on fmt::format if not available).
+Modern Asyncronous Logger using C++20 and [std::format](https://en.cppreference.com/w/cpp/utility/format/format) (falls back on [fmt::format](https://github.com/fmtlib/fmt) if not available) without using macro's!
+Uses [std::source_location](https://en.cppreference.com/w/cpp/utility/source_location) to get the location where a log was made.
 
 ## CMake variables
 
