@@ -2,6 +2,10 @@
 
 Modern Asyncronous Logger using C++20 and std::format (falls back on fmt::format if not available).
 
+## CMake variables
+
+ - `USE_FMT` : Force AsyncLogger to use fmt formatting instead of std formatting if it's available.
+
 ## How to use
 
 Very simple example application showing how to implement it.
