@@ -1,4 +1,5 @@
 #pragma once
+#include <chrono>
 #include <source_location>
 #include <sstream>
 #include "LogLevel.hpp"
@@ -17,6 +18,7 @@ namespace al
 
     private:
         const eLogLevel m_Level;
+        std::chrono::system_clock::time_point m_Timestamp;
         std::source_location m_Location;
         std::ostringstream m_Stream;
         

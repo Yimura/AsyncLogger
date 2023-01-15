@@ -24,9 +24,9 @@ namespace al
         Logger::GetInstance().InitImpl();
     }
 
-    void Logger::PushMessage(const eLogLevel level, std::source_location&& location, std::string&& message) noexcept
+    void Logger::PushMessage(const eLogLevel level, std::chrono::system_clock::time_point&& timestamp, std::source_location&& location, std::string&& message) noexcept
     {
-        auto msgPtr = std::make_shared<LogMessage>(level, std::move(location), std::move(message));
+        auto msgPtr = std::make_shared<LogMessage>(level, std::move(timestamp), std::move(location), std::move(message));
 
         Logger::GetInstance().QueueMessage(std::move(msgPtr));
     }

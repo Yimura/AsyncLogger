@@ -33,7 +33,7 @@ namespace al
         static void Init();
 
     protected:
-        static void PushMessage(const eLogLevel level, std::source_location&& location, std::string&& message) noexcept;
+        static void PushMessage(const eLogLevel level, std::chrono::system_clock::time_point&& timestamp, std::source_location&& location, std::string&& message) noexcept;
 
     private:
         void CallSinks(LogMessagePtr msgPtr);
