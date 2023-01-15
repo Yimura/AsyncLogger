@@ -16,6 +16,13 @@ namespace al
 
     }
 
+    LogIntermediate::LogIntermediate(const std::string &formatString, const std::source_location location) :
+        m_FormatString(formatString),
+        m_Location(location)
+    {
+
+    }
+
     const std::string_view LogIntermediate::FormatString() const
     {
         return m_FormatString;

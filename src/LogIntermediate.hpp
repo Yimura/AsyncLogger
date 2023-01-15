@@ -9,6 +9,7 @@ namespace al
     public:
         LogIntermediate(const std::string_view formatString, const std::source_location location = std::source_location::current());
         LogIntermediate(const char* formatString, const std::source_location location = std::source_location::current());
+        LogIntermediate(const std::string& formatString, const std::source_location location = std::source_location::current());
         virtual ~LogIntermediate() = default;
 
         const std::string_view FormatString() const;
