@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.20)
 
 project(AsyncLogger LANGUAGES CXX VERSION 0.0.1 DESCRIPTION "A lightweight C++20 asyncronous logger.")
 
-set(SRC_DIR "${PROJECT_SOURCE_DIR}/src/")
+set(SRC_DIR "${PROJECT_SOURCE_DIR}/src")
 
 # check std::format support
 if(NOT USE_FMT)
@@ -13,8 +13,8 @@ else()
 endif()
 
 file(GLOB_RECURSE SRC_FILES
-    "${SRC_DIR}**.cpp"
-    "${SRC_DIR}**.hpp"
+    "${SRC_DIR}/**.cpp"
+    "${SRC_DIR}/**.hpp"
 )
 
 add_library(${PROJECT_NAME} STATIC ${SRC_FILES})
@@ -40,7 +40,8 @@ endif()
 find_package(Threads REQUIRED)
 target_link_libraries(${PROJECT_NAME} Threads::Threads )
 
-set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER src/Logger.hpp)
+set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${SRC_DIR}/Logger.hpp")
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 20)
 
+target_precompile_headers(${PROJECT_NAME} PUBLIC "${SRC_DIR}/common.hpp")
 target_include_directories(${PROJECT_NAME} PUBLIC ${SRC_DIR})
