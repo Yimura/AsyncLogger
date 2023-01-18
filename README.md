@@ -13,7 +13,7 @@ Very simple example application showing how to implement it.
 
 main.cpp
 ```cpp
-#include "Logger.hpp"
+#include "AsyncLogger/Logger.hpp"
 #include <filesystem>
 #include <iostream>
 
