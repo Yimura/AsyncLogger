@@ -16,10 +16,12 @@ endif()
 file(GLOB_RECURSE SRC_FILES
     "${SRC_DIR}/**.cpp"
     "${SRC_DIR}/**.hpp"
+)
+file(GLOB_RECURSE PUBLIC_HEADER_FILES
     "${PUBLIC_HEADER_DIR}/**.hpp"
 )
 
-add_library(${PROJECT_NAME} STATIC ${SRC_FILES})
+add_library(${PROJECT_NAME} STATIC ${SRC_FILES} ${PUBLIC_HEADER_FILES})
 
 if(CXX_FORMAT_SUPPORT)
     message("Using std::format for formatting, you can set USE_FMT to force fmt::format instead.")
@@ -42,8 +44,12 @@ endif()
 find_package(Threads REQUIRED)
 target_link_libraries(${PROJECT_NAME} Threads::Threads )
 
-set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${PUBLIC_HEADER_DIR}")
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 20)
 
-target_precompile_headers(${PROJECT_NAME} PUBLIC "${SRC_DIR}/common.hpp")
-target_include_directories(${PROJECT_NAME} PUBLIC ${SRC_DIR} "${PUBLIC_HEADER_DIR}/AsyncLogger/")
+target_include_directories(${PROJECT_NAME} PRIVATE "${PUBLIC_HEADER_DIR}/AsyncLogger/")
+target_include_directories(${PROJECT_NAME} PUBLIC "${SRC_DIR}")
+target_precompile_headers(${PROJECT_NAME} PRIVATE "${SRC_DIR}/common.hpp")
+
+# public stuff
+set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${PUBLIC_HEADER_FILES}")
+target_include_directories(${PROJECT_NAME} PUBLIC "${PUBLIC_HEADER_DIR}")
