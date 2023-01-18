@@ -4,9 +4,9 @@ namespace al
 {
     enum eLogLevel
     {
-        DEBUG,
+        VERBOSE,
         INFO,
         WARNING,
-        ERROR
+        FATAL
     };
 }
