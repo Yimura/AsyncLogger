@@ -24,8 +24,15 @@ namespace al
         Logger::GetInstance().InitImpl();
     }
 
-    void Logger::PushMessage(const eLogLevel level, std::chrono::system_clock::time_point&& timestamp, std::source_location&& location, std::string&& message) noexcept
+    void Logger::FlushQueue()
     {
+        GetInstance().FlushQueueImpl();
+    }
+
+    void Logger::PushMessage(const eLogLevel level,
+                             std::chrono::system_clock::time_point &&timestamp,
+                             std::source_location &&location,
+                             std::string &&message) noexcept {
         auto msgPtr = std::make_shared<LogMessage>(level, std::move(timestamp), std::move(location), std::move(message));
 
         Logger::GetInstance().QueueMessage(std::move(msgPtr));
@@ -60,6 +67,16 @@ namespace al
                 func();
             }
         });
+    }
+
+    void Logger::FlushQueueImpl()
+    {
+        while (!m_Queue.empty())
+        {
+            std::function<void()> func;
+            m_Queue.wait_and_pop(func);
+            func();
+        }
     }
 
     void Logger::QueueMessage(LogMessagePtr msgPtr)

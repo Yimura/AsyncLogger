@@ -24,9 +24,9 @@ file(GLOB_RECURSE PUBLIC_HEADER_FILES
 add_library(${PROJECT_NAME} STATIC ${SRC_FILES} ${PUBLIC_HEADER_FILES})
 
 if(CXX_FORMAT_SUPPORT)
-    message("Using std::format for formatting, you can set USE_FMT to force fmt::format instead.")
+    message(STATUS "Using std::format for formatting, you can set USE_FMT to force fmt::format instead.")
 else()
-    message("Using fmt::format for formatting.")
+    message(STATUS "Using fmt::format for formatting.")
     include(FetchContent)
 
     FetchContent_Declare(

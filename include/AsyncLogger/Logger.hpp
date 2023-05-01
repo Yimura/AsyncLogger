@@ -31,6 +31,10 @@ namespace al
         static void AddSink(LogSink sink);
         static void Destroy();
         static void Init();
+        /**
+         * @brief Attempts to flush the log queue immediately until it's completely empty.
+         */
+        static void FlushQueue();
 
     protected:
         static void PushMessage(const eLogLevel level, std::chrono::system_clock::time_point&& timestamp, std::source_location&& location, std::string&& message) noexcept;
@@ -39,6 +43,10 @@ namespace al
         void CallSinks(LogMessagePtr msgPtr);
         void DestroyImpl();
         void InitImpl();
+        /**
+         * @brief Attempts to flush the entire log queue before returning
+         */
+        void FlushQueueImpl();
         void QueueMessage(LogMessagePtr msgPtr);
 
         static Logger& GetInstance()
