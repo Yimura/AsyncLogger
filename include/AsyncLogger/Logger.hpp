@@ -71,6 +71,6 @@ namespace al
     inline void LOGF(const eLogLevel level, LogIntermediate formatString, Args&&... formatArgs)
     {
         auto capture = LogCapture(level, std::move(formatString.Location()));
-        capture << VFORMAT(formatString.FormatString(), MAKE_FORMAT_ARGS(std::forward<Args>(formatArgs)...));
+        capture << VFORMAT(formatString.FormatString(), MAKE_FORMAT_ARGS(formatArgs...));
     }
 }
