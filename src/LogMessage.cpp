@@ -4,11 +4,12 @@
 
 namespace al
 {
-    LogMessage::LogMessage(const eLogLevel level, std::chrono::system_clock::time_point&& timestamp, std::source_location&& location, std::string&& message) :
+	LogMessage::LogMessage(const eLogLevel level, std::chrono::system_clock::time_point&& timestamp, std::source_location&& location, std::string&& message, std::optional<std::shared_ptr<LogStream> const> stream) :
         m_Level(level),
         m_Timestamp(timestamp),
         m_Location(location),
-        m_Message(message)
+        m_Message(message),
+	    m_Stream(stream)
     {
         
     }
@@ -31,5 +32,10 @@ namespace al
     const std::chrono::system_clock::time_point &LogMessage::Timestamp() const
     {
         return m_Timestamp;
-    }
+	}
+
+	const std::optional<std::shared_ptr<LogStream> const> LogMessage::Stream() const
+	{
+		return m_Stream;
+	}
 }

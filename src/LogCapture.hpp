@@ -3,6 +3,7 @@
 #include <source_location>
 #include <sstream>
 #include "LogLevel.hpp"
+#include "LogStream.hpp"
 
 namespace al
 {
@@ -10,7 +11,7 @@ namespace al
     class LogCapture
     {
     public:
-        LogCapture(const eLogLevel level, std::source_location&& location);
+		LogCapture(const eLogLevel level, std::source_location&& location, std::optional<std::shared_ptr<LogStream> const> stream);
         ~LogCapture();
 
         template<typename T>
@@ -21,7 +22,7 @@ namespace al
         std::chrono::system_clock::time_point m_Timestamp;
         std::source_location m_Location;
         std::ostringstream m_Stream;
-        
+		std::optional<std::shared_ptr<LogStream> const> m_LogStream;
     };
 
     template<typename T>
