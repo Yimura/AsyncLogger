@@ -3,11 +3,11 @@
 
 namespace al
 {
-	LogCapture::LogCapture(const eLogLevel level, std::source_location&& location, std::optional<std::shared_ptr<LogStream> const> stream) :
+    LogCapture::LogCapture(const eLogLevel level, std::source_location&& location, std::optional<std::shared_ptr<LogStream> const> stream) :
         m_Level(level),
         m_Timestamp(std::chrono::system_clock::now()),
         m_Location(location),
-	    m_LogStream(stream)
+        m_LogStream(stream)
     {}
 
     LogCapture::~LogCapture()
