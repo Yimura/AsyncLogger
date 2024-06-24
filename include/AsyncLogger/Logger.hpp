@@ -16,6 +16,7 @@
 #include "LogIntermediate.hpp"
 #include "LogLevel.hpp"
 #include "LogMessage.hpp"
+#include "LogStream.hpp"
 
 namespace al
 {
@@ -37,7 +38,7 @@ namespace al
         static void FlushQueue();
 
     protected:
-        static void PushMessage(const eLogLevel level, std::chrono::system_clock::time_point&& timestamp, std::source_location&& location, std::string&& message) noexcept;
+        static void PushMessage(const eLogLevel level, std::chrono::system_clock::time_point&& timestamp, std::source_location&& location, std::string&& message, std::optional<std::shared_ptr<LogStream> const>&& stream = std::nullopt) noexcept;
 
     private:
         void CallSinks(LogMessagePtr msgPtr);
@@ -70,7 +71,17 @@ namespace al
     template<typename ...Args>
     inline void LOGF(const eLogLevel level, LogIntermediate formatString, Args&&... formatArgs)
     {
-        auto capture = LogCapture(level, std::move(formatString.Location()));
+        auto capture = LogCapture(level, std::move(formatString.Location()), std::nullopt);
+        capture << VFORMAT(formatString.FormatString(), MAKE_FORMAT_ARGS(formatArgs...));
+    }
+
+    template<typename... Args>
+    inline void LOGF(const std::shared_ptr<LogStream> stream, const eLogLevel level, LogIntermediate formatString, Args&&... formatArgs)
+    {
+        if (stream && !stream->Enabled())
+            return;
+
+        auto capture = LogCapture(level, std::move(formatString.Location()), stream);
         capture << VFORMAT(formatString.FormatString(), MAKE_FORMAT_ARGS(formatArgs...));
     }
 }
