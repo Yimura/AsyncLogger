@@ -1,5 +1,5 @@
 #pragma once
-#if !defined(USE_FMT) && CXX_FORMAT_SUPPORT || true
+#if !defined(USE_FMT) && CXX_FORMAT_SUPPORT
     #include <format>
     #define FORMAT std::format
     #define VFORMAT std::vformat
