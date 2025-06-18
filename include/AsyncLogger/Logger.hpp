@@ -11,6 +11,7 @@
     #define MAKE_FORMAT_ARGS fmt::make_format_args
 #endif
 #include <functional>
+#include <thread>
 #include "concurrency/shared_queue.hpp"
 #include "LogCapture.hpp"
 #include "LogIntermediate.hpp"
